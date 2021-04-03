@@ -1,0 +1,14 @@
+#!/bin/bash
+set -e
+
+cd $(dirname $0)
+
+if [ "$ROOTFS" != "0" ]; then
+    ./package-rootfs
+fi
+./package-initrd
+
+if [ "$ARCH" == "amd64" ]; then
+    ./package-installer
+    ./package-iso
+fi

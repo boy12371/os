@@ -1,0 +1,403 @@
+#!/bin/bash
+set -e
+# help: build and run RancherOS, requires KVM local
+
+cd $(dirname $0)/..
+
+source ./scripts/run-common
+
+MEMORY=2048
+
+while [ "$#" -gt 0 ]; do
+    case $1 in
+        --debug)
+            DEBUG=1
+            ;;
+        --iso)
+            BOOT_ISO=1
+            QEMU=0
+            QIND=0
+            REBUILD=0
+            ;;
+        --boothd)
+            BOOT_HD=1
+            QEMU=0
+            QIND=0
+            REBUILD=0
+            ;;
+        --resizehd)
+            shift 1
+            RESIZEHD=$1
+            ;;
+        --pxe)
+            BOOT_PXE=1
+            FORMAT=0
+            ;;
+        --do)
+            BOOT_HD=1
+            QEMU=0
+            QIND=0
+            REBUILD=0
+            CONSOLEDISPLAY=1
+            USE_OPENSTACK_IMG="digitalocean"
+            ;;
+        --digitalocean)
+            BOOT_HD=1
+            QEMU=0
+            QIND=0
+            REBUILD=0
+            CONSOLEDISPLAY=1
+            USE_OPENSTACK_IMG="digitalocean"
+            ;;
+        --openstack)
+            BOOT_HD=1
+            QEMU=0
+            QIND=0
+            REBUILD=0
+            CONSOLEDISPLAY=1
+            USE_OPENSTACK_IMG="openstack"
+            ;;
+        --append)
+            shift 1
+            QEMU_APPEND="${QEMU_APPEND} $1"
+            ;;
+        --rsyslog)
+            RSYSLOG=1
+            ;;
+        --append-init)
+            shift 1
+            APPEND_INIT="${APPEND_INIT} $1"
+            ;;
+        --memory)
+            shift 1
+            MEMORY="$1"
+            ;;
+        --name)
+            shift 1
+            NAME="$1"
+            ;;
+        --cloud-config)
+            shift 1
+            CLOUD_CONFIG="$1" || :
+            if [ ! -f ${CLOUD_CONFIG} ]; then
+                echo No such file: "'"${CLOUD_CONFIG}"'" 1>&2
+                exit 1
+            fi
+            ;;
+        --cloud-config-iso)
+            CLOUD_CONFIG_FORMAT="iso"
+            ;;
+        --cloud-config-fat)
+            CLOUD_CONFIG_FORMAT="fat"
+            ;;
+        --second-drive)
+            SECOND_DRIVE=1
+            ;;
+        --arch)
+            shift 1
+            ARCH="$1"
+            ;;
+        --qemu)
+            QEMU=1
+            ;;
+        --qind)
+            QIND=1
+            QEMU=0
+            ;;
+        --kvm)
+            KVM=1
+            ;;
+        --no-format)
+            FORMAT=0
+            ;;
+        --no-rm-usr)
+            RM_USR=0
+            ;;
+        --no-rebuild)
+            REBUILD=0
+            ;;
+        --no-network)
+            NO_NETWORK=1
+            ;;
+        --fresh)
+            FRESH=1
+            ;;
+        --b2d)
+            # use together with --fresh to trigger boot2docker/machine auto-format
+            AUTOFORMAT=1
+            ;;
+        --console)
+        # use the bios console, not serial (lets you see syslinux)
+            CONSOLEDISPLAY=1
+            ;;
+        --netconsole)
+            NETCONSOLE=1
+            ;;
+        --gui)
+            GUICONSOLE=1
+            ;;
+        --installed)
+            ./scripts/create-installed
+            INSTALLED=1
+            ;;
+        *)
+            break
+            ;;
+    esac
+    shift 1
+done
+
+if [ "$QEMU" == "1" ] && ! which qemu-system-${QEMUARCH}; then
+    QEMU=0
+fi
+
+if [[ ! -e ${KERNEL} || ! -e ${INITRD_SRC} ]]; then
+    echo "Failed to find ${KERNEL} or ${INITRD_SRC}" 1>&2
+    exit 1
+fi
+
+echo "initrd ${INITRD}"
+if [ "$REBUILD" == "1" ] || [ ! -e ${INITRD} ]; then
+    echo "rebuilding ${INITRD} from ${INITRD_SRC}"
+    cp bin/ros ${INITRD_SRC}/usr/bin/ros
+    ./scripts/hash-initrd
+    pushd ${INITRD_SRC} >/dev/null
+    find . | cpio -H newc -o | gzip -1 > ${INITRD}
+    popd >/dev/null
+fi
+
+KERNEL_ARGS="${DEFAULT_KERNEL_ARGS} ${QEMU_APPEND}"
+if [ "$DEBUG" == "1" ]; then
+    KERNEL_ARGS="${KERNEL_ARGS} rancher.debug=true"
+fi
+if [ "$FORMAT" == "1" ]; then
+    KERNEL_ARGS="${KERNEL_ARGS} rancher.state.dev=LABEL=RANCHER_STATE rancher.state.autoformat=[/dev/sda,/dev/vda]"
+fi
+if [ "$RM_USR" == "1" ]; then
+    KERNEL_ARGS="${KERNEL_ARGS} rancher.rm_usr"
+fi
+if [ "$BOOT_PXE" == "1" ]; then
+    KERNEL_ARGS="console=tty1 rancher.autologin=tty1 ${KERNEL_ARGS}"
+    set -ex
+    PIXIECORE=$(which pixiecore)
+    sudo -E $PIXIECORE boot \
+               "${KERNEL}" \
+               "${INITRD}" \
+               --cmdline="${KERNEL_ARGS}"
+    return 0
+fi
+if [ "$RSYSLOG" == "1" ]; then
+    defaultDev=$(ip route | grep default | cut -f 5 -d " ")
+    devIP=$(ip a show dev $defaultDev | grep "inet " | cut -d " " -f 6 | cut -d / -f 1)
+    KERNEL_ARGS="${KERNEL_ARGS} loglevel=8 netconsole=+9999@10.0.2.14/,514@${devIP}/"
+fi
+# ELIDE_COMMANDLINE - MUST BE LAST
+if [ "$APPEND_INIT" != "" ]; then
+    KERNEL_ARGS="${KERNEL_ARGS} -- ${APPEND_INIT}"
+fi
+
+if [ "$KVM" == "" ] && [ -c /dev/kvm ] && [ -r /dev/kvm ] && [ -w /dev/kvm ]; then
+    KVM=1
+fi
+set -x
+if [ "$QEMU" == "1" ] || [ "$BOOT_ISO" == "1" ] || [ "$BOOT_HD" == "1" ]; then
+    HD=${BASE}/state/hd.img
+    HD2=${BASE}/state/hd2.img
+    [ "$FRESH" == "1" ] && rm -f ${HD} ${HD2} >/dev/null 2>&1 || :
+
+    if [ ! -e ${HD} ]; then
+        mkdir -p $(dirname ${HD})
+        if [ "$USE_OPENSTACK_IMG" != "" ]; then
+           if [ ! -e "dist/artifacts/rancheros-${USE_OPENSTACK_IMG}.img" ]; then
+               echo "please build the open stack image first (run make release)."
+               exit 1
+           fi
+           cp dist/artifacts/rancheros-${USE_OPENSTACK_IMG}.img $HD
+           qemu-img resize ${HD} 70GB
+        else
+            if [ ¨$INSTALLED¨ == ¨1¨ ]; then
+                ./scripts/create-installed
+            else
+                if [ "$AUTOFORMAT" == "1" ]; then
+                    echo "boot2docker, please format-me" | cat - /dev/zero | head -c 5242880 > format-flag.txt # 5M
+                    qemu-img convert -f raw format-flag.txt -O qcow2 ${HD}
+                    qemu-img resize ${HD} +10GB
+                else
+                    qemu-img create -f qcow2 -o size=10G ${HD}
+                fi
+            fi
+        fi
+    else
+        if [ "$RESIZEHD" != "" ]; then
+            qemu-img resize ${HD} ${RESIZEHD}
+        fi
+    fi
+
+    if [ "$SECOND_DRIVE" == "1" ]; then
+        if [ "$FRESH" == "1" ]; then
+            qemu-img create -f qcow2 -o size=10G ${HD2}
+        fi
+        SECOND_DRIVE_ENABLE=$(eval "${hd["$ARCH"]} ${HD2}")
+    fi
+fi
+
+if [ "$QIND" != "1" ]; then
+    CPU=${cpu["$ARCH"]}
+    if [ "$KVM" == "1" ] && [ "$ARCH" == "$HOST_ARCH" ]; then
+        KVM_ENABLE="-enable-kvm"
+        CPU="-cpu host"
+    fi
+
+    if [[ "${CLOUD_CONFIG}" == *".iso" ]]; then
+        CLOUD_CONFIG_DISK="-cdrom ${CLOUD_CONFIG}"
+    else
+        CCROOT=${BUILD}/cloud-config
+        rm -rf ${CCROOT}
+        mkdir -p ${CCROOT}
+
+        USER_DATA=${CCROOT}/openstack/latest/user_data
+        mkdir -p $(dirname ${USER_DATA})
+        rm -f ${USER_DATA} || :
+        if [ -n "$CLOUD_CONFIG" ]; then
+            cat ${CLOUD_CONFIG} > ${USER_DATA}
+        else
+            echo "#cloud-config" > ${USER_DATA}
+            echo "ssh_authorized_keys:" >> ${USER_DATA}
+            echo "- $(<${BASE}/assets/rancher.key.pub)" >> ${USER_DATA}
+        fi
+        case $CLOUD_CONFIG_FORMAT in
+            iso)
+                mkisofs -R -V config-2 -o ${BASE}/state/configdrive.iso ${CCROOT}
+                CLOUD_CONFIG_DISK="-cdrom ${BASE}/state/configdrive.iso"
+            ;;
+            fat)
+                truncate --size 2M ${BASE}/state/configdrive.img
+                mkfs.vfat -n config-2 ${BASE}/state/configdrive.img
+                mcopy -osi ${BASE}/state/configdrive.img ${CCROOT}/* ::
+                CLOUD_CONFIG_DISK="-hdb ${BASE}/state/configdrive.img"
+            ;;
+            *)
+                CLOUD_CONFIG_DISK="-fsdev local,security_model=passthrough,readonly,id=fsdev0,path=${CCROOT} \
+                    -device virtio-9p-pci,id=fs0,fsdev=fsdev0,mount_tag=config-2"
+            ;;
+        esac
+    fi
+
+    HOME=${HOME:-/}
+fi
+
+if [ "$GUICONSOLE" == "" ]; then
+    # default serial console
+    DISPLAY_OPTS="-nographic -serial mon:stdio -display none"
+    if [ "$CONSOLEDISPLAY" == "1" ]; then
+        DISPLAY_OPTS="-curses"
+    fi
+    if [ "$NETCONSOLE" == "1" ]; then
+        # put ttyS1 on port 4444
+        DISPLAY_OPTS="${DISPLAY_OPTS} -serial tcp::4444,server"
+        KERNEL_ARGS="rancher.console=ttyS1 rancher.autologin=ttyS1 ${KERNEL_ARGS}"
+    fi
+fi
+
+if [ "${NO_NETWORK}" == "1" ]; then
+    NETWORK="-net none"
+else
+    NETWORK="${network["$ARCH"]}"
+fi
+
+if [ "$QEMU" == "1" ]; then
+    if [ "$INSTALLED" == "1" ]; then
+        # kernel args only works when using -kernel
+        KERNEL_ARGS=""
+    else
+        INSTALLED_ARGS="-kernel ${KERNEL} -initrd ${INITRD}"
+    fi
+    set -x
+    exec qemu-system-${QEMUARCH} \
+            ${DISPLAY_OPTS} \
+            -rtc base=utc,clock=host \
+            ${INSTALLED_ARGS} \
+            -append "${KERNEL_ARGS}" \
+            ${KVM_ENABLE} \
+            ${CPU} \
+            ${machine["$ARCH"]} \
+            -m $MEMORY \
+            ${NETWORK} \
+            $(eval "${hd["$ARCH"]} ${HD}") \
+            ${SECOND_DRIVE_ENABLE} \
+            -smp 1 \
+            -device virtio-rng-pci \
+            ${CLOUD_CONFIG_DISK} \
+            -fsdev local,security_model=none,id=fsdev1,path=${HOME} \
+            -device virtio-9p-pci,id=fs1,fsdev=fsdev1,mount_tag=home \
+            ${QEMU_ARGS} \
+            "${@}"
+
+elif [ "$BOOT_ISO" == "1" ] ||
+            [ "$BOOT_HD" == "1" ]; then
+    if [ "$BOOT_ISO" == "1" ]; then
+        ISO_OPTS="-boot c -cdrom ./dist/artifacts/rancheros.iso \
+            -fsdev local,security_model=none,id=fsdev1,path=${HOME} \
+            -device virtio-9p-pci,id=fs1,fsdev=fsdev1,mount_tag=home "
+            echo "----- $ISO_OPTS"
+    fi
+    set -x
+    exec qemu-system-${QEMUARCH} \
+            ${DISPLAY_OPTS} \
+            ${CLOUD_CONFIG_DISK} \
+            -rtc base=utc,clock=host \
+            ${KVM_ENABLE} \
+            ${CPU} \
+            ${machine["$ARCH"]} \
+            -m $MEMORY \
+            ${NETWORK} \
+            $(eval "${hd["$ARCH"]} ${HD}") \
+            ${SECOND_DRIVE_ENABLE} \
+            -smp 1 \
+            -device virtio-rng-pci \
+            ${ISO_OPTS} \
+            "${@}"
+elif [ "$QIND" == "1" ]; then
+
+    NAME=${NAME:-ros-qind}
+
+    if [ "$FRESH" == "1" ]; then
+        docker rm -fv ${NAME} >/dev/null 2>&1 || :
+    fi
+    if ! docker inspect ${NAME} >/dev/null 2>&1; then
+        if [ "$KVM" == "1" ]; then
+            KVM_ENABLE="--device=/dev/kvm:/dev/kvm"
+        fi
+
+        mkdir -p ./tmp
+        TMP=$(mktemp -d ./tmp/ros-qind-XXXXXX)
+        mkdir -p ${TMP}/stuff
+        trap "rm -rf ${TMP}" EXIT
+        ln ${CLOUD_CONFIG} ${KERNEL} ${INITRD} ./assets/rancher.key ./assets/rancher.key.pub ${TMP}/stuff/
+
+        KERNEL_FILE=$(basename ${KERNEL})
+        INITRD_FILE=$(basename ${INITRD})
+
+        if [ -n "$CLOUD_CONFIG" ]; then
+            CLOUD_CONFIG_ENABLE="--cloud-config /stuff/$(basename ${CLOUD_CONFIG})"
+        else
+            SSH_PUB_ENABLE="--ssh-pub /stuff/rancher.key.pub"
+        fi
+
+        set -x
+        docker create --name=${NAME} -it ${KVM_ENABLE} \
+                    rancher/qind \
+                    --hostname "rancher-dev" \
+                    ${CLOUD_CONFIG_ENABLE} \
+                    ${SSH_PUB_ENABLE} \
+                    -m 1G -kernel /stuff/${KERNEL_FILE} -initrd /stuff/${INITRD_FILE} -append "${KERNEL_ARGS}" \
+                    "${@}"
+
+        docker cp ${TMP}/stuff ${NAME}:/stuff
+        rm -rf ${TMP}
+    fi
+    exec docker start -ai ${NAME}
+
+else
+    exit 42
+fi

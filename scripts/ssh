@@ -1,0 +1,51 @@
+#!/bin/bash
+set -e
+
+cd $(dirname $0)/..
+
+chmod 0600 ./assets/rancher.key
+
+QEMU=1
+UNAME=$(uname)
+INTERACTIVE="-it"
+
+while [ "$#" -gt 0 ]; do
+    case $1 in
+        --name)
+            shift 1
+            NAME="$1"
+            ;;
+        --notty)
+            INTERACTIVE=""
+            ;;
+        --qemu)
+            QEMU=1
+            ;;
+        --qind)
+            QIND=1
+            QEMU=0
+            ;;
+        --key)
+            shift 1
+            KEY="$1"
+            ;;
+        *)
+            break
+            ;;
+    esac
+    shift 1
+done
+
+if [ "$QEMU" == "1" ]; then
+    exec ssh -p 2222 -F ./assets/scripts_ssh_config -i ${KEY:-./assets/rancher.key} rancher@localhost "$@"
+elif [ "$QIND" == "1" ]; then
+    NAME=${NAME:-ros-qind}
+    if [ -n "$KEY" ]; then
+        docker inspect ${NAME} >/dev/null 2>&1 || exit 1
+        docker cp ${KEY} ${NAME}:/stuff/$(basename ${KEY})
+        KEY_FILE=/stuff/$(basename ${KEY})
+    fi
+    exec docker exec ${INTERACTIVE} ${NAME} /ssh.sh -i ${KEY_FILE:-/stuff/rancher.key} rancher@localhost "$@"
+else
+    exit 42
+fi

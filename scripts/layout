@@ -1,0 +1,17 @@
+#!/bin/bash
+set -e
+
+source $(dirname $0)/version
+cd $(dirname $0)/..
+
+ARTIFACTS=$(pwd)/dist/artifacts
+BUILD=build
+INITRD_DIR=${BUILD}/initrd
+export ARTIFACTS BUILD INITRD_DIR VERSION
+
+./scripts/layout-initrd
+./scripts/layout-kernel
+
+curl -sL ${!OS_INITRD_BASE_URL} | tar xzvf - -C ${INITRD_DIR}
+
+./scripts/hash-initrd

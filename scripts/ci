@@ -1,0 +1,11 @@
+#!/bin/bash
+set -ex
+
+cd $(dirname $0)/..
+
+echo BUILD
+./scripts/build
+echo TEST
+./scripts/test
+echo VALIDATE
+./scripts/validate

@@ -1,0 +1,27 @@
+#!/bin/bash
+set -e
+
+cd $(dirname $0)/..
+
+source scripts/version
+
+BUILD=$(pwd)/build
+INITRD_DIR=${BUILD}/initrd
+ARTIFACTS=$(pwd)/dist/artifacts
+
+mkdir -p ${ARTIFACTS}
+
+if [ ! -f ${ARTIFACTS}/vmlinuz-${KERNEL_VERSION} ]; then
+    echo "skipping package-initrd due to ARM build? (no kernel artifact)"
+    exit 0
+fi
+
+if [ "$COMPRESS" == "" ]; then
+    COMPRESS="gzip -1"
+fi
+
+cd ${INITRD_DIR}
+
+echo Creating ${ARTIFACTS}/${INITRD}
+find | cpio -H newc -o | ${COMPRESS} > ${ARTIFACTS}/${INITRD}
+echo Done creating ${ARTIFACTS}/${INITRD}

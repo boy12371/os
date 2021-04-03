@@ -1,0 +1,55 @@
+#!/bin/bash
+set -ex
+
+cd $(dirname $0)/..
+
+source ./scripts/run-common
+
+if [ ! -e ${INITRD} ]; then
+    cp bin/ros ${INITRD_SRC}/usr/bin/ros
+    ./scripts/hash-initrd
+    pushd ${INITRD_SRC} >/dev/null
+    find . | cpio -H newc -o | gzip -1 > ${INITRD}
+    popd >/dev/null
+fi
+
+mkdir -p {dist,build/openstack/latest}
+
+cat > build/openstack/latest/user_data << EOF
+#!/bin/bash
+set -e
+
+trap "poweroff" EXIT
+
+sleep 5
+
+touch log
+openvt -s -- tail -f log &
+
+mount -t 9p -o trans=virtio,version=9p2000.L config-2 /mnt
+
+# use the install tarball in the iso
+ros install -d /dev/vda -f --no-reboot --append "console=ttyS0 rancher.autologin=ttyS0" >> /mnt/log 2>&1
+
+touch /mnt/success
+EOF
+
+rm -f build/{success,hd.img}
+qemu-img create -f qcow2 build/hd.img 8G
+qemu-system-${QEMUARCH} -serial mon:stdio \
+    -enable-kvm \
+    -drive if=virtio,file=build/hd.img \
+    -boot d -cdrom ./dist/artifacts/rancheros.iso \
+    -m 2048 \
+    -smp 1 \
+    -nographic \
+    -display none \
+    -fsdev local,id=conf,security_model=none,path=$(pwd)/build \
+    -device virtio-9p-pci,fsdev=conf,mount_tag=config-2 \
+    -device virtio-rng-pci
+
+[ -f build/success ]
+
+mkdir -p state
+cp build/hd.img state/hd.img
+echo "------------------------ RancherOS installed to hd.img."
