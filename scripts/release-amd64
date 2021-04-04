@@ -19,17 +19,17 @@ for file in $(ls dist/artifacts/); do
         *"installer.tar" | "Dockerfile"*)
             ;;
         "initrd-"*)
-            echo "github-release upload --user boy12371 --repo os-419184 --tag ${VERSION} --file ./dist/artifacts/${file} --name initrd" >> dist/publish.sh
+            echo "github-release upload  --user boy12371 --repo os-419184 --tag ${VERSION} --file ./dist/artifacts/${file} --name initrd" >> dist/publish.sh
             echo "gsutil cp dist/artifacts/${file} gs://releases.rancher.com/os/latest/initrd" >> ./dist/publish_gss_latest.sh
             echo "gsutil cp dist/artifacts/${file} gs://releases.rancher.com/os/${VERSION}/initrd" >> ./dist/publish_gss_${VERSION}.sh
             ;;
         "vmlinuz-"*)
-            echo "github-release upload --user boy12371 --repo os-419184 --tag ${VERSION} --file ./dist/artifacts/${file} --name vmlinuz" >> dist/publish.sh
+            echo "github-release upload  --user boy12371 --repo os-419184 --tag ${VERSION} --file ./dist/artifacts/${file} --name vmlinuz" >> dist/publish.sh
             echo "gsutil cp dist/artifacts/${file} gs://releases.rancher.com/os/latest/vmlinuz" >> ./dist/publish_gss_latest.sh
             echo "gsutil cp dist/artifacts/${file} gs://releases.rancher.com/os/${VERSION}/vmlinuz" >> ./dist/publish_gss_${VERSION}.sh
             ;;
         *)
-            echo "github-release upload --user boy12371 --repo os-419184 --tag ${VERSION} --file ./dist/artifacts/${file} --name ${file}" >> dist/publish.sh
+            echo "github-release upload  --user boy12371 --repo os-419184 --tag ${VERSION} --file ./dist/artifacts/${file} --name ${file}" >> dist/publish.sh
             echo "gsutil cp dist/artifacts/${file} gs://releases.rancher.com/os/latest/${file}" >> ./dist/publish_gss_latest.sh
             echo "gsutil cp dist/artifacts/${file} gs://releases.rancher.com/os/${VERSION}/${file}" >> ./dist/publish_gss_${VERSION}.sh
             ;;

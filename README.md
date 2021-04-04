@@ -18,7 +18,7 @@ it would really be bad if somebody did `docker rm -f $(docker ps -qa)` and delet
 
 ## Release
 
-- **v1.5.8 - Docker 19.03.15 - Linux 4.14.138**
+- **v1.5.8 - Docker 19.03.15 - Linux 4.14.228**
 
 ### ISO
 

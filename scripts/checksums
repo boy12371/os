@@ -40,6 +40,6 @@ for file in $FILELIST; do
 done
 popd
 
-echo "github-release upload --user boy12371 --repo os-419184 --tag ${VERSION} --file $CHECKSUM --name checksums.txt"
+echo "github-release upload  --user boy12371 --repo os-419184 --tag ${VERSION} --file $CHECKSUM --name checksums.txt"
 echo "gsutil cp $CHECKSUM gs://releases.rancher.com/os/latest/checksums.txt"
 echo "gsutil cp $CHECKSUM gs://releases.rancher.com/os/$VERSION/checksums.txt"
