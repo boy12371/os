@@ -29,7 +29,7 @@ func Shutdown() {
 	app := cli.NewApp()
 
 	app.Name = filepath.Base(os.Args[0])
-	app.Usage = fmt.Sprintf("%s RancherOS\nbuilt: %s", app.Name, config.BuildDate)
+	app.Usage = fmt.Sprintf("%s SveilOS\nbuilt: %s", app.Name, config.BuildDate)
 	app.Version = config.Version
 	app.Author = "Rancher Labs, Inc."
 	app.EnableBashCompletion = true
@@ -125,12 +125,12 @@ func Shutdown() {
 		// OR? maybe implement it as a `kexec` cli tool?
 		app.Flags = append(app.Flags, cli.BoolFlag{
 			Name:        "kexec",
-			Usage:       "kexec the default RancherOS cfg",
+			Usage:       "kexec the default SveilOS cfg",
 			Destination: &kexecFlag,
 		})
 		app.Flags = append(app.Flags, cli.BoolFlag{
 			Name:        "kexec-previous",
-			Usage:       "kexec the previous RancherOS cfg",
+			Usage:       "kexec the previous SveilOS cfg",
 			Destination: &previouskexecFlag,
 		})
 		app.Flags = append(app.Flags, cli.StringFlag{

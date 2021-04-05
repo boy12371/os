@@ -93,7 +93,7 @@ echo "- kexecing"
 
 $SSHSOS sudo kexec -f -l vmlinuz --initrd=initrd --append "rancher.password=${PASS} tinkerbell=http://bdba494d.ngrok.io console=ttyS1,115200n8 rancher.network.interfaces.eth0.dhcp=true rancher.network.interfaces.eth2.dhcp=true"
 
-#The server will restart and then you should be running RancherOS from memory.
+#The server will restart and then you should be running SveilOS from memory.
 $SSHSOS reboot
 
 ## need to change the user for the exepct script
@@ -105,7 +105,7 @@ $SSHSOS uname -a
 
 # need to retrieve the packet.sh, vmlinuz and initrd from the disk
 # TODO: this makes sense on type-0 - dunno about raid
-# TODO: don't use dev, use LABEL - if&when we switch to running this on RancherOS
+# TODO: don't use dev, use LABEL - if&when we switch to running this on SveilOS
 $SSHSOS sudo mount /dev/sda3 /mnt
 $SSHSOS cp /mnt/root/* .
 exit
@@ -124,7 +124,7 @@ fi
 
 $SSHSOS bash ./packet.sh
 
-#Reboot and then RancherOS should be fully installed.
+#Reboot and then SveilOS should be fully installed.
 #$SSHSOS reboot
 
 #$SSH uname -a 

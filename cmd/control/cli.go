@@ -21,7 +21,7 @@ func Main() {
 	app := cli.NewApp()
 
 	app.Name = os.Args[0]
-	app.Usage = fmt.Sprintf("Control and configure RancherOS\nbuilt: %s", config.BuildDate)
+	app.Usage = fmt.Sprintf("Control and configure SveilOS\nbuilt: %s", config.BuildDate)
 	app.Version = config.Version
 	app.Author = "Rancher Labs, Inc."
 	app.EnableBashCompletion = true

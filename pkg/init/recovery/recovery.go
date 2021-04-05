@@ -55,7 +55,7 @@ func LoadRecoveryConsole(cfg *config.CloudConfig) (*config.CloudConfig, error) {
 
 func Recovery(initFailure error) {
 	if initFailure != nil {
-		log.Errorf("RancherOS has failed to boot: %v", initFailure)
+		log.Errorf("SveilOS has failed to boot: %v", initFailure)
 	}
 	log.Info("Launching recovery console")
 

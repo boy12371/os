@@ -63,7 +63,7 @@ func PvGrubConfig(menu BootVars) error {
 	log.Debugf("pvGrubConfig")
 
 	filetmpl, err := template.New("grublst").Parse(`{{define "grubmenu"}}
-title RancherOS {{.Version}}-({{.Name}})
+title SveilOS {{.Version}}-({{.Name}})
 root (hd0)
 kernel /${bootDir}vmlinuz-{{.Version}}-rancheros {{.KernelArgs}} {{.Append}}
 initrd /${bootDir}initrd-{{.Version}}-rancheros

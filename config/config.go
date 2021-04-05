@@ -18,7 +18,7 @@ const Banner = `
    |   |        |   |     \\_| \\_\\__,_|_| |_|\\___|_| |_|\\___|_|     \\___/\\____/
    \\___/        \\___/     \s \r
 
-         RancherOS \v \n \l
+         SveilOS \v \n \l
          `
 
 func Merge(bytes []byte) error {

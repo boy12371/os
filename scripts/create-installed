@@ -52,4 +52,4 @@ qemu-system-${QEMUARCH} -serial mon:stdio \
 
 mkdir -p state
 cp build/hd.img state/hd.img
-echo "------------------------ RancherOS installed to hd.img."
+echo "------------------------ SveilOS installed to hd.img."

@@ -1,4 +1,4 @@
-# RancherOS built using LinuxKit/Moby
+# SveilOS built using LinuxKit/Moby
 
 This is an initial non-containerd version.
 

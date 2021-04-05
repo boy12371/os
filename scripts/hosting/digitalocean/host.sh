@@ -3,7 +3,7 @@
 #
 # This script will make a shell script that can be used as a cloud-init style user data script
 # or run as root from a debian/ubuntu DigitalOcean VM to replace that distribution with
-# RancherOS
+# SveilOS
 #
 # Its intended to be used for development, but can easily be modified to be more generally
 # useful - make a Pull Request :)

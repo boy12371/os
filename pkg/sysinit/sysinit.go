@@ -119,7 +119,7 @@ func SysInit() error {
 				return cfg, nil
 			}},
 			{"banner", func(cfg *config.CloudConfig) (*config.CloudConfig, error) {
-				log.Infof("RancherOS %s started", config.Version)
+				log.Infof("SveilOS %s started", config.Version)
 				return cfg, nil
 			}}})
 	return err

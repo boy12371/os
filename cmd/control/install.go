@@ -26,7 +26,7 @@ import (
 
 var installCommand = cli.Command{
 	Name:     "install",
-	Usage:    "install RancherOS to disk",
+	Usage:    "install SveilOS to disk",
 	HideHelp: true,
 	Action:   installAction,
 	Flags: []cli.Flag{
@@ -38,9 +38,9 @@ var installCommand = cli.Command{
 		},
 		cli.StringFlag{
 			Name: "install-type, t",
-			Usage: `generic:    (Default) Creates 1 ext4 partition and installs RancherOS (syslinux)
-                        amazon-ebs: Installs RancherOS and sets up PV-GRUB
-                        gptsyslinux: partition and format disk (gpt), then install RancherOS and setup Syslinux
+			Usage: `generic:    (Default) Creates 1 ext4 partition and installs SveilOS (syslinux)
+                        amazon-ebs: Installs SveilOS and sets up PV-GRUB
+                        gptsyslinux: partition and format disk (gpt), then install SveilOS and setup Syslinux
                         `,
 		},
 		cli.StringFlag{
@@ -368,9 +368,9 @@ func getBootIso() (string, string, error) {
 	deviceName := "/dev/sr0"
 	deviceType := "iso9660"
 
-	// Our ISO LABEL is RancherOS
+	// Our ISO LABEL is SveilOS
 	// But some tools(like rufus) will change LABEL to RANCHEROS
-	for _, label := range []string{"RancherOS", "RANCHEROS"} {
+	for _, label := range []string{"SveilOS", "SVEILOS"} {
 		d, t := getDeviceByLabel(label)
 		if d != "" {
 			deviceName = d
@@ -553,7 +553,7 @@ func layDownOS(image, installType, cloudConfig, device, partition, statedir, kap
 			Timeout:  0,
 			Fallback: 0, // need to be conditional on there being a 'rollback'?
 			Entries: []install.MenuEntry{
-				install.MenuEntry{"RancherOS-current", config.BootDir, VERSION, kernelArgs, kappend},
+				install.MenuEntry{"SveilOS-current", config.BootDir, VERSION, kernelArgs, kappend},
 			},
 		}
 		install.PvGrubConfig(menu)
@@ -859,9 +859,9 @@ func upgradeBootloader(device, baseName, diskType string) error {
 				log.Infof("error read(%s / syslinux.cfg): %s", backupSyslinuxDir, err)
 			} else {
 				cfg := string(oldSyslinux)
-				//DEFAULT RancherOS-current
+				//DEFAULT SveilOS-current
 				//
-				//LABEL RancherOS-current
+				//LABEL SveilOS-current
 				//    LINUX ../vmlinuz-v0.7.1-rancheros
 				//    APPEND rancher.state.dev=LABEL=RANCHER_STATE rancher.state.wait console=tty0 rancher.password=rancher
 				//    INITRD ../initrd-v0.7.1-rancheros

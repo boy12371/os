@@ -62,6 +62,6 @@ fi
 tar -c -f /tmp/rancheros_export_$ARCHIVE -C $dest_dir  . >/dev/null 2>&1
 
 echo "*********************************************************"
-echo "The RancherOS config and log are successfully exported."
+echo "The SveilOS config and log are successfully exported."
 echo "Please check the /tmp/rancheros_export_$ARCHIVE."
 echo "*********************************************************"

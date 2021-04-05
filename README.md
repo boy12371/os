@@ -1,10 +1,10 @@
-# RancherOS
+# SveilOS
 
 [![Build Status](https://drone-pr.rancher.io/api/badges/rancher/os/status.svg?branch=master)](https://drone-pr.rancher.io/rancher/os)
 [![Docker Pulls](https://img.shields.io/docker/pulls/rancher/os.svg)](https://store.docker.com/community/images/rancher/os)
 [![Go Report Card](https://goreportcard.com/badge/github.com/rancher/os)](https://goreportcard.com/badge/github.com/rancher/os)
 
-The smallest, easiest way to run Docker in production at scale.  Everything in RancherOS is a container managed by Docker.  This includes system services such as udev and rsyslog.  RancherOS includes only the bare minimum amount of software needed to run Docker.  This keeps the binary download of RancherOS very small.  Everything else can be pulled in dynamically through Docker.
+The smallest, easiest way to run Docker in production at scale.  Everything in SveilOS is a container managed by Docker.  This includes system services such as udev and rsyslog.  SveilOS includes only the bare minimum amount of software needed to run Docker.  This keeps the binary download of SveilOS very small.  Everything else can be pulled in dynamically through Docker.
 
 # Build SveilOS release archives
 
@@ -17,7 +17,7 @@ make release
 
 ## How this works
 
-Everything in RancherOS is a Docker container.  We accomplish this by launching two instances of
+Everything in SveilOS is a Docker container.  We accomplish this by launching two instances of
 Docker.  One is what we call the system Docker which runs as the first process.  System Docker then launches
 a container that runs the user Docker.  The user Docker is then the instance that gets primarily
 used to create containers.  We created this separation because it seemed logical and also
@@ -119,19 +119,19 @@ Additionally, images are available with support for Amazon EC2 Container Service
 
 ### Azure
 
-You can get RancherOS in the [Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/rancher.rancheros), currently only the `rancher` user can be logged in through SSH keys.
+You can get SveilOS in the [Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/rancher.rancheros), currently only the `rancher` user can be logged in through SSH keys.
 
-## Documentation for RancherOS
+## Documentation for SveilOS
 
-Please refer to our [RancherOS Documentation](https://rancher.com/docs/os/v1.x/en/) website to read all about RancherOS. It has detailed information on how RancherOS works, getting-started and other details.
+Please refer to our [SveilOS Documentation](https://rancher.com/docs/os/v1.x/en/) website to read all about SveilOS. It has detailed information on how SveilOS works, getting-started and other details.
 
 ## Support, Discussion, and Community
-If you need any help with RancherOS or Rancher, please join us at either our [Rancher forums](http://forums.rancher.com) or [#rancher IRC channel](http://webchat.freenode.net/?channels=rancher) where most of our team hangs out at.
+If you need any help with SveilOS or Rancher, please join us at either our [Rancher forums](http://forums.rancher.com) or [#rancher IRC channel](http://webchat.freenode.net/?channels=rancher) where most of our team hangs out at.
 
 For security issues, please email security@rancher.com instead of posting a public issue in GitHub.  You may (but are not required to) use the GPG key located on [Keybase](https://keybase.io/rancher).
 
 
-Please submit any **RancherOS** bugs, issues, and feature requests to [rancher/os](//github.com/rancher/os/issues).
+Please submit any **SveilOS** bugs, issues, and feature requests to [rancher/os](//github.com/rancher/os/issues).
 
 Please submit any **Rancher** bugs, issues, and feature requests to [rancher/rancher](//github.com/rancher/rancher/issues).
 

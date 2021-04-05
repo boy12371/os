@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-# help: build and run RancherOS, requires KVM local
+# help: build and run SveilOS, requires KVM local
 
 cd $(dirname $0)/..
 

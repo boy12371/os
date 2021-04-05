@@ -30,7 +30,7 @@ func SwitchRoot(cfg *config.CloudConfig) (*config.CloudConfig, error) {
 func cleanupTarget(rootfs, targetUsr, usr, usrVer, tmpDir string) (bool, error) {
 	log.Debugf("Deleting %s", targetUsr)
 	if err := os.Remove(targetUsr); err != nil && !os.IsNotExist(err) {
-		log.Errorf("Failed to delete %s, possibly invalid RancherOS state partition: %v", targetUsr, err)
+		log.Errorf("Failed to delete %s, possibly invalid SveilOS state partition: %v", targetUsr, err)
 		return false, err
 	}
 

@@ -22,7 +22,7 @@ LABEL {{.Name}}
     INITRD ../initrd-{{.Version}}-rancheros
 {{end}}
 TIMEOUT 20   #2 seconds
-DEFAULT RancherOS-current
+DEFAULT SveilOS-current
 
 {{- range .Entries}}
 {{template "syslinuxmenu" .}}

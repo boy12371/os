@@ -4,7 +4,7 @@ COPY . /
 
 RUN rm /sbin/poweroff /sbin/reboot /sbin/halt && \
     sed -i '/^root/s!/bin/sh!/bin/bash!' /etc/passwd && \
-    echo 'RancherOS \n \l' > /etc/issue && \
+    echo 'SveilOS \n \l' > /etc/issue && \
     rm -rf /run \
        /linuxrc \
        /etc/os-release \

@@ -56,7 +56,7 @@ ARG ARCH=${HOST_ARCH}
 
 ARG OS_REPO=rancher
 ARG HOSTNAME_DEFAULT=rancher
-ARG DISTRIB_ID=RancherOS
+ARG DISTRIB_ID=SveilOS
 
 ARG SELINUX_POLICY_URL=https://github.com/rancher/refpolicy/releases/download/v0.0.3/policy.29
 

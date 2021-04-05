@@ -34,12 +34,12 @@ curl -SL ${!SYSTEM_DOCKER_URL} | tar --strip-components=1 -xzvf - -C ${INITRD_DI
 rm -f ${INITRD_DIR}/usr/bin/system-docker-proxy
 
 cat <<HERE > ${INITRD_DIR}/usr/share/ros/os-release
-NAME="RancherOS"
+NAME="SveilOS"
 VERSION=${VERSION}
 ID=rancheros
 ID_LIKE=
 VERSION_ID=${VERSION}
-PRETTY_NAME="RancherOS ${VERSION}"
+PRETTY_NAME="SveilOS ${VERSION}"
 HOME_URL="http://rancher.com/rancher-os/"
 SUPPORT_URL="https://forums.rancher.com/c/rancher-os"
 BUG_REPORT_URL="https://github.com/rancher/os/issues"

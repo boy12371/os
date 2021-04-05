@@ -201,7 +201,7 @@ func AddRSyslogHook() {
 				hook, err := lsyslog.NewSyslogHook("udp", netconsoleDestination, syslog.LOG_DEBUG, "")
 				if err == nil {
 					logrus.StandardLogger().Hooks.Add(hook)
-					Infof("Sending RancherOS Logs to: %s", netconsoleDestination)
+					Infof("Sending SveilOS Logs to: %s", netconsoleDestination)
 				} else {
 					Errorf("Error creating SyslogHook: %s", err)
 				}
