@@ -54,8 +54,8 @@ ARG DAPPER_HOST_ARCH=amd64
 ARG HOST_ARCH=${DAPPER_HOST_ARCH}
 ARG ARCH=${HOST_ARCH}
 
-ARG OS_REPO=rancher
-ARG HOSTNAME_DEFAULT=rancher
+ARG OS_REPO=sveil
+ARG HOSTNAME_DEFAULT=sveil
 ARG DISTRIB_ID=SveilOS
 
 ARG SELINUX_POLICY_URL=https://github.com/rancher/refpolicy/releases/download/v0.0.3/policy.29
