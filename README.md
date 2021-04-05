@@ -6,6 +6,15 @@
 
 The smallest, easiest way to run Docker in production at scale.  Everything in RancherOS is a container managed by Docker.  This includes system services such as udev and rsyslog.  RancherOS includes only the bare minimum amount of software needed to run Docker.  This keeps the binary download of RancherOS very small.  Everything else can be pulled in dynamically through Docker.
 
+# Build SveilOS release archives
+
+To build the tgz's and the sveilos images, run:
+
+```
+git tag v4.14.228
+make release
+```
+
 ## How this works
 
 Everything in RancherOS is a Docker container.  We accomplish this by launching two instances of
