@@ -10,4 +10,3 @@ source ./scripts/version
 ./scripts/release-4glte
 ./scripts/release-hyperv
 ./scripts/release-proxmoxve
-./scripts/release-vmware
