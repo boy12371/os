@@ -31,60 +31,60 @@ it would really be bad if somebody did `docker rm -f $(docker ps -qa)` and delet
 
 ### ISO
 
-- https://releases.rancher.com/os/v1.5.8/rancheros.iso
-- https://releases.rancher.com/os/v1.5.8/hyperv/rancheros.iso
-- https://releases.rancher.com/os/v1.5.8/4glte/rancheros.iso
-- https://releases.rancher.com/os/v1.5.8/vmware/rancheros.iso
+- https://github.com/sveil/os/releases/download/v4.14.228/sveilos.iso
+- https://github.com/sveil/os/releases/download/v4.14.228/hyperv/sveilos.iso
+- https://github.com/sveil/os/releases/download/v4.14.228/4glte/sveilos.iso
+- https://github.com/sveil/os/releases/download/v4.14.228/vmware/sveilos.iso
 
 #### Special docker-machine Links
 
-- https://releases.rancher.com/os/v1.5.8/vmware/rancheros-autoformat.iso
-- https://releases.rancher.com/os/v1.5.8/proxmoxve/rancheros-autoformat.iso
+- https://github.com/sveil/os/releases/download/v4.14.228/vmware/sveilos-autoformat.iso
+- https://github.com/sveil/os/releases/download/v4.14.228/proxmoxve/sveilos-autoformat.iso
 
 ### Additional Downloads
 
 #### AMD64 Links
 
-* https://releases.rancher.com/os/v1.5.8/initrd
-* https://releases.rancher.com/os/v1.5.8/vmlinuz
-* https://releases.rancher.com/os/v1.5.8/rancheros.ipxe
-* https://releases.rancher.com/os/v1.5.8/rootfs.tar.gz
+* https://github.com/sveil/os/releases/download/v4.14.228/initrd
+* https://github.com/sveil/os/releases/download/v4.14.228/vmlinuz
+* https://github.com/sveil/os/releases/download/v4.14.228/sveilos.ipxe
+* https://github.com/sveil/os/releases/download/v4.14.228/rootfs.tar.gz
 
 #### ARM64 Links
 
-* https://releases.rancher.com/os/v1.5.8/arm64/initrd
-* https://releases.rancher.com/os/v1.5.8/arm64/vmlinuz
-* https://releases.rancher.com/os/v1.5.8/arm64/rootfs_arm64.tar.gz
-* https://releases.rancher.com/os/v1.5.8/arm64/rancheros-raspberry-pi64.zip
+* https://github.com/sveil/os/releases/download/v4.14.228/arm64/initrd
+* https://github.com/sveil/os/releases/download/v4.14.228/arm64/vmlinuz
+* https://github.com/sveil/os/releases/download/v4.14.228/arm64/rootfs_arm64.tar.gz
+* https://github.com/sveil/os/releases/download/v4.14.228/arm64/sveilos-raspberry-pi64.zip
 
 #### Cloud Links
 
-* https://releases.rancher.com/os/v1.5.8/rancheros-openstack.img
-* https://releases.rancher.com/os/v1.5.8/rancheros-digitalocean.img
-* https://releases.rancher.com/os/v1.5.8/rancheros-cloudstack.img
-* https://releases.rancher.com/os/v1.5.8/rancheros-aliyun.vhd
-* https://releases.rancher.com/os/v1.5.8/rancheros-gce.tar.gz
+* https://github.com/sveil/os/releases/download/v4.14.228/sveilos-openstack.img
+* https://github.com/sveil/os/releases/download/v4.14.228/sveilos-digitalocean.img
+* https://github.com/sveil/os/releases/download/v4.14.228/sveilos-cloudstack.img
+* https://github.com/sveil/os/releases/download/v4.14.228/sveilos-aliyun.vhd
+* https://github.com/sveil/os/releases/download/v4.14.228/sveilos-gce.tar.gz
 
 #### VMware Links
 
-* https://releases.rancher.com/os/v1.5.8/vmware/initrd
-* https://releases.rancher.com/os/v1.5.8/vmware/rancheros.vmdk
-* https://releases.rancher.com/os/v1.5.8/vmware/rootfs.tar.gz
+* https://github.com/sveil/os/releases/download/v4.14.228/vmware/initrd
+* https://github.com/sveil/os/releases/download/v4.14.228/vmware/sveilos.vmdk
+* https://github.com/sveil/os/releases/download/v4.14.228/vmware/rootfs.tar.gz
 
 #### Hyper-V Links
 
-* https://releases.rancher.com/os/v1.5.8/hyperv/initrd
-* https://releases.rancher.com/os/v1.5.8/hyperv/rootfs.tar.gz
+* https://github.com/sveil/os/releases/download/v4.14.228/hyperv/initrd
+* https://github.com/sveil/os/releases/download/v4.14.228/hyperv/rootfs.tar.gz
 
 #### Proxmox VE Links
 
-* https://releases.rancher.com/os/v1.5.8/proxmoxve/initrd
-* https://releases.rancher.com/os/v1.5.8/proxmoxve/rootfs.tar.gz
+* https://github.com/sveil/os/releases/download/v4.14.228/proxmoxve/initrd
+* https://github.com/sveil/os/releases/download/v4.14.228/proxmoxve/rootfs.tar.gz
 
 #### 4G-LTE Links
 
-* https://releases.rancher.com/os/v1.5.8/4glte/initrd
-* https://releases.rancher.com/os/v1.5.8/4glte/rootfs.tar.gz
+* https://github.com/sveil/os/releases/download/v4.14.228/4glte/initrd
+* https://github.com/sveil/os/releases/download/v4.14.228/4glte/rootfs.tar.gz
 
 **Note**:
 1. you can use `http` instead of `https` in the above URLs, e.g. for iPXE.
@@ -92,7 +92,7 @@ it would really be bad if somebody did `docker rm -f $(docker ps -qa)` and delet
 
 ### Amazon
 
-SSH keys are added to the **`rancher`** user, so you must log in using the **rancher** user.
+SSH keys are added to the **`sveil`** user, so you must log in using the **sveil** user.
 
 **HVM**
 
@@ -119,19 +119,19 @@ Additionally, images are available with support for Amazon EC2 Container Service
 
 ### Azure
 
-You can get SveilOS in the [Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/rancher.rancheros), currently only the `rancher` user can be logged in through SSH keys.
+You can get SveilOS in the [Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/rancher.rancheros), currently only the `sveil` user can be logged in through SSH keys.
 
 ## Documentation for SveilOS
 
 Please refer to our [SveilOS Documentation](https://rancher.com/docs/os/v1.x/en/) website to read all about SveilOS. It has detailed information on how SveilOS works, getting-started and other details.
 
 ## Support, Discussion, and Community
-If you need any help with SveilOS or Rancher, please join us at either our [Rancher forums](http://forums.rancher.com) or [#rancher IRC channel](http://webchat.freenode.net/?channels=rancher) where most of our team hangs out at.
+If you need any help with SveilOS or Rancher, please join us at either our [Rancher forums](http://forums.rancher.com) or [#sveil IRC channel](http://webchat.freenode.net/?channels=sveil) where most of our team hangs out at.
 
-For security issues, please email security@rancher.com instead of posting a public issue in GitHub.  You may (but are not required to) use the GPG key located on [Keybase](https://keybase.io/rancher).
+For security issues, please email security@sveil.com instead of posting a public issue in GitHub.  You may (but are not required to) use the GPG key located on [Keybase](https://keybase.io/rancher).
 
 
-Please submit any **SveilOS** bugs, issues, and feature requests to [rancher/os](//github.com/rancher/os/issues).
+Please submit any **SveilOS** bugs, issues, and feature requests to [sveil/os](//github.com/sveil/os/issues).
 
 Please submit any **Rancher** bugs, issues, and feature requests to [rancher/rancher](//github.com/rancher/rancher/issues).
 

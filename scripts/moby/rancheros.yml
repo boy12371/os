@@ -5,7 +5,7 @@ kernel:
   cmdline: 'printk.devkmsg=on rancher.debug=true rancher.password=rancher console=ttyS0 rancher.autologin=ttyS0 console=tty0 rancher.autologin=tty0 console=tty1 rancher.autologin=tty1 rancher.state.dev=LABEL=RANCHER_STATE rancher.state.autoformat=[/dev/sda,/dev/vda] rancher.rm_usr'
 init:
   - zombie/os
-#  - rancher/os-installer
+#  - sveil/os-installer
 #  - rancher/os-initrd
 #outputs:
 #  - format: kernel+initrd

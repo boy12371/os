@@ -1,4 +1,4 @@
-FROM rancher/os-rootfs
+FROM sveil/os-rootfs
 
 COPY . /
 
@@ -23,13 +23,13 @@ RUN rm /sbin/poweroff /sbin/reboot /sbin/halt && \
        /var/run \
        /var/spool && \
     passwd -l root && \
-    addgroup -g 1100 rancher && \
+    addgroup -g 1100 sveil && \
     addgroup -g 1101 docker && \
     addgroup -g 1103 sudo && \
-    adduser -u 1100 -G rancher -D -h /home/rancher -s /bin/bash rancher && \
+    adduser -u 1100 -G sveil -D -h /home/sveil -s /bin/bash sveil && \
     adduser -u 1101 -G docker -D -h /home/docker -s /bin/bash docker && \
-    adduser rancher docker && \
-    adduser rancher sudo && \
+    adduser sveil docker && \
+    adduser sveil sudo && \
     adduser docker sudo && \
     echo '%sudo ALL=(ALL) ALL' >> /etc/sudoers && \
     ln -s /dev/null /etc/udev/rules.d/80-net-name-slot.rules && \

@@ -1,2 +1,2 @@
-FROM rancher/os-base
+FROM sveil/os-base
 COPY . /

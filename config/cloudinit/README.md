@@ -13,8 +13,8 @@ Additionally, several [CoreOS-specific options][custom-cloud-config] have been i
 All supported cloud-config parameters are [documented here][all-cloud-config]. 
 
 [official-cloud-config]: http://cloudinit.readthedocs.org/en/latest/topics/format.html#cloud-config-data
-[custom-cloud-config]: https://github.com/rancher/os/config/cloudinit/blob/master/Documentation/cloud-config.md#coreos-parameters
-[all-cloud-config]: https://github.com/rancher/os/config/cloudinit/tree/master/Documentation/cloud-config.md
+[custom-cloud-config]: https://github.com/sveil/os/config/cloudinit/blob/master/Documentation/cloud-config.md#coreos-parameters
+[all-cloud-config]: https://github.com/sveil/os/config/cloudinit/tree/master/Documentation/cloud-config.md
 
 The following is an example cloud-config document:
 
