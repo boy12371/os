@@ -114,5 +114,5 @@ tag="${OS_REPO}/${name}:${VERSION}${SUFFIX}"
 pushd .
 cd ${INITRD_DIR}/..
 docker build -t ${OS_REPO}/${name} -f Dockerfile.initrd .
-docker tag rancher/${name} ${tag}
+docker tag ${OS_REPO}/${name} ${tag}
 popd
