@@ -19,8 +19,8 @@ import (
 	"path"
 	"strings"
 
-	"github.com/rancher/os/config/cloudinit/config"
-	"github.com/rancher/os/config/cloudinit/system"
+	"github.com/sveil/os/config/cloudinit/config"
+	"github.com/sveil/os/config/cloudinit/system"
 )
 
 func PrepWorkspace(workspace string) error {

@@ -18,7 +18,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/rancher/os/config/cloudinit/config"
+	"github.com/sveil/os/config/cloudinit/config"
 )
 
 func TestOEMFile(t *testing.T) {

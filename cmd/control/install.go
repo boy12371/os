@@ -13,12 +13,12 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/rancher/os/cmd/control/install"
-	"github.com/rancher/os/cmd/power"
-	"github.com/rancher/os/config"
-	"github.com/rancher/os/pkg/dfs" // TODO: move CopyFile into util or something.
-	"github.com/rancher/os/pkg/log"
-	"github.com/rancher/os/pkg/util"
+	"github.com/sveil/os/cmd/control/install"
+	"github.com/sveil/os/cmd/power"
+	"github.com/sveil/os/config"
+	"github.com/sveil/os/pkg/dfs" // TODO: move CopyFile into util or something.
+	"github.com/sveil/os/pkg/log"
+	"github.com/sveil/os/pkg/util"
 
 	"github.com/codegangsta/cli"
 	"github.com/pkg/errors"

@@ -17,7 +17,7 @@ package initialize
 import (
 	"testing"
 
-	"github.com/rancher/os/config/cloudinit/config"
+	"github.com/sveil/os/config/cloudinit/config"
 )
 
 func TestParseHeaderCRLF(t *testing.T) {

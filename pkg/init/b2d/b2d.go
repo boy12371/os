@@ -3,10 +3,10 @@ package b2d
 import (
 	"os"
 
-	"github.com/rancher/os/config"
-	"github.com/rancher/os/pkg/init/configfiles"
-	"github.com/rancher/os/pkg/log"
-	"github.com/rancher/os/pkg/util"
+	"github.com/sveil/os/config"
+	"github.com/sveil/os/pkg/init/configfiles"
+	"github.com/sveil/os/pkg/log"
+	"github.com/sveil/os/pkg/util"
 )
 
 const (

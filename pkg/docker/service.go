@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/rancher/os/config"
-	"github.com/rancher/os/pkg/log"
-	"github.com/rancher/os/pkg/util/network"
+	"github.com/sveil/os/config"
+	"github.com/sveil/os/pkg/log"
+	"github.com/sveil/os/pkg/util/network"
 
 	"github.com/docker/docker/layer"
 	dockerclient "github.com/docker/engine-api/client"

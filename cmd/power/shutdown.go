@@ -7,9 +7,9 @@ import (
 	"path/filepath"
 	"syscall"
 
-	"github.com/rancher/os/cmd/control/install"
-	"github.com/rancher/os/config"
-	"github.com/rancher/os/pkg/log"
+	"github.com/sveil/os/cmd/control/install"
+	"github.com/sveil/os/config"
+	"github.com/sveil/os/pkg/log"
 
 	"github.com/codegangsta/cli"
 )

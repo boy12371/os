@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/rancher/os/config"
-	"github.com/rancher/os/pkg/log"
+	"github.com/sveil/os/config"
+	"github.com/sveil/os/pkg/log"
 
 	composeConfig "github.com/docker/libcompose/config"
 )

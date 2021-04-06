@@ -20,7 +20,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/rancher/os/config/cloudinit/config"
+	"github.com/sveil/os/config/cloudinit/config"
 )
 
 type UnitManager interface {

@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/rancher/os/cmd/control/service/command"
-	"github.com/rancher/os/config"
-	"github.com/rancher/os/pkg/compose"
-	"github.com/rancher/os/pkg/log"
-	"github.com/rancher/os/pkg/util"
-	"github.com/rancher/os/pkg/util/network"
+	"github.com/sveil/os/cmd/control/service/command"
+	"github.com/sveil/os/config"
+	"github.com/sveil/os/pkg/compose"
+	"github.com/sveil/os/pkg/log"
+	"github.com/sveil/os/pkg/util"
+	"github.com/sveil/os/pkg/util/network"
 
 	"github.com/codegangsta/cli"
 	dockerApp "github.com/docker/libcompose/cli/docker/app"

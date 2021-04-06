@@ -3,8 +3,8 @@ package sharedroot
 import (
 	"os"
 
-	"github.com/rancher/os/config"
-	"github.com/rancher/os/pkg/init/fsmount"
+	"github.com/sveil/os/config"
+	"github.com/sveil/os/pkg/init/fsmount"
 
 	"github.com/docker/docker/pkg/mount"
 )

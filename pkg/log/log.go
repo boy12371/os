@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/rancher/os/config/cmdline"
+	"github.com/sveil/os/config/cmdline"
 
 	"github.com/Sirupsen/logrus"
 	lsyslog "github.com/Sirupsen/logrus/hooks/syslog"

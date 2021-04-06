@@ -7,7 +7,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/rancher/os/config/cloudinit/datasource"
+	"github.com/sveil/os/config/cloudinit/datasource"
 
 	"github.com/pin/tftp"
 )

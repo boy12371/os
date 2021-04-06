@@ -5,8 +5,8 @@ import (
 	"strings"
 
 	yaml "github.com/cloudfoundry-incubator/candiedyaml"
-	"github.com/rancher/os/config/cmdline"
-	"github.com/rancher/os/pkg/util"
+	"github.com/sveil/os/config/cmdline"
+	"github.com/sveil/os/pkg/util"
 )
 
 const Banner = `

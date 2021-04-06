@@ -3,7 +3,7 @@ package proxmox
 import (
 	"testing"
 
-	"github.com/rancher/os/config/cloudinit/datasource/test"
+	"github.com/sveil/os/config/cloudinit/datasource/test"
 )
 
 func TestFetchUserdata(t *testing.T) {

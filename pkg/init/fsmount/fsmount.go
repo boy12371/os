@@ -5,11 +5,11 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/rancher/os/config"
-	"github.com/rancher/os/config/cmdline"
-	"github.com/rancher/os/pkg/init/bootstrap"
-	"github.com/rancher/os/pkg/log"
-	"github.com/rancher/os/pkg/util"
+	"github.com/sveil/os/config"
+	"github.com/sveil/os/config/cmdline"
+	"github.com/sveil/os/pkg/init/bootstrap"
+	"github.com/sveil/os/pkg/log"
+	"github.com/sveil/os/pkg/util"
 )
 
 const (

@@ -5,7 +5,7 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/rancher/os/pkg/util"
+	"github.com/sveil/os/pkg/util"
 
 	yaml "github.com/cloudfoundry-incubator/candiedyaml"
 )

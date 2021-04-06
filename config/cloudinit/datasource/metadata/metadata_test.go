@@ -20,8 +20,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/rancher/os/config/cloudinit/datasource/metadata/test"
-	"github.com/rancher/os/config/cloudinit/pkg"
+	"github.com/sveil/os/config/cloudinit/datasource/metadata/test"
+	"github.com/sveil/os/config/cloudinit/pkg"
 )
 
 func TestAvailabilityChanges(t *testing.T) {

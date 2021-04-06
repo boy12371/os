@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"runtime"
 
-	"github.com/rancher/os/config/cloudinit/config"
-	"github.com/rancher/os/config/yaml"
-	"github.com/rancher/os/pkg/netconf"
+	"github.com/sveil/os/config/cloudinit/config"
+	"github.com/sveil/os/config/yaml"
+	"github.com/sveil/os/pkg/netconf"
 
 	"github.com/docker/engine-api/types"
 	composeConfig "github.com/docker/libcompose/config"

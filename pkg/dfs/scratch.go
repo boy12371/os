@@ -11,12 +11,12 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/rancher/os/config/cmdline"
-	"github.com/rancher/os/pkg/init/one"
-	"github.com/rancher/os/pkg/log"
-	"github.com/rancher/os/pkg/netconf"
-	"github.com/rancher/os/pkg/selinux"
-	"github.com/rancher/os/pkg/util"
+	"github.com/sveil/os/config/cmdline"
+	"github.com/sveil/os/pkg/init/one"
+	"github.com/sveil/os/pkg/log"
+	"github.com/sveil/os/pkg/netconf"
+	"github.com/sveil/os/pkg/selinux"
+	"github.com/sveil/os/pkg/util"
 
 	"github.com/docker/libnetwork/resolvconf"
 )

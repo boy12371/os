@@ -1,8 +1,8 @@
 package config
 
 import (
-	"github.com/rancher/os/pkg/log"
-	"github.com/rancher/os/pkg/util"
+	"github.com/sveil/os/pkg/log"
+	"github.com/sveil/os/pkg/util"
 )
 
 type CfgFunc func(*CloudConfig) (*CloudConfig, error)

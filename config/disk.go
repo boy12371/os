@@ -9,11 +9,11 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/rancher/os/config/cloudinit/datasource"
-	"github.com/rancher/os/config/cloudinit/initialize"
-	"github.com/rancher/os/config/cmdline"
-	"github.com/rancher/os/pkg/log"
-	"github.com/rancher/os/pkg/util"
+	"github.com/sveil/os/config/cloudinit/datasource"
+	"github.com/sveil/os/config/cloudinit/initialize"
+	"github.com/sveil/os/config/cmdline"
+	"github.com/sveil/os/pkg/log"
+	"github.com/sveil/os/pkg/util"
 
 	yaml "github.com/cloudfoundry-incubator/candiedyaml"
 	"github.com/docker/engine-api/types"

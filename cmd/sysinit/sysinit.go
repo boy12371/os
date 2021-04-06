@@ -4,8 +4,8 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/rancher/os/pkg/log"
-	"github.com/rancher/os/pkg/sysinit"
+	"github.com/sveil/os/pkg/log"
+	"github.com/sveil/os/pkg/sysinit"
 )
 
 func Main() {

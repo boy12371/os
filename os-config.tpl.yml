@@ -317,7 +317,7 @@ rancher:
       - system-volumes
     system-cron:
       {{if eq "amd64" .ARCH -}}
-      image: rancher/container-crontab:v0.4.0
+      image: {{.OS_REPO}}/container-crontab:v0.4.0
       {{else -}}
       image: niusmallnan/container-crontab:v0.4.0{{.SUFFIX}}
       {{end -}}
@@ -359,9 +359,9 @@ rancher:
       - system-volumes
     docker:
       {{if eq "amd64" .ARCH -}}
-      image: rancher/os-docker:{{.USER_DOCKER_VERSION}}{{.SUFFIX}}
+      image: {{.OS_REPO}}/os-docker:{{.USER_DOCKER_VERSION}}{{.SUFFIX}}
       {{else -}}
-      image: rancher/os-docker:{{.USER_DOCKER_VERSION}}{{.SUFFIX}}
+      image: {{.OS_REPO}}/os-docker:{{.USER_DOCKER_VERSION}}{{.SUFFIX}}
       {{end -}}
       command: ros user-docker
       environment:

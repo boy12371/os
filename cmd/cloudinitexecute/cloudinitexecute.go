@@ -9,12 +9,12 @@ import (
 	"path"
 	"strings"
 
-	rancherConfig "github.com/rancher/os/config"
-	"github.com/rancher/os/config/cloudinit/config"
-	"github.com/rancher/os/config/cloudinit/system"
-	"github.com/rancher/os/pkg/docker"
-	"github.com/rancher/os/pkg/log"
-	"github.com/rancher/os/pkg/util"
+	rancherConfig "github.com/sveil/os/config"
+	"github.com/sveil/os/config/cloudinit/config"
+	"github.com/sveil/os/config/cloudinit/system"
+	"github.com/sveil/os/pkg/docker"
+	"github.com/sveil/os/pkg/log"
+	"github.com/sveil/os/pkg/util"
 
 	"golang.org/x/net/context"
 )

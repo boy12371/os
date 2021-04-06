@@ -9,11 +9,11 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/rancher/os/config"
-	"github.com/rancher/os/pkg/compose"
-	rosDocker "github.com/rancher/os/pkg/docker"
-	"github.com/rancher/os/pkg/log"
-	"github.com/rancher/os/pkg/util"
+	"github.com/sveil/os/config"
+	"github.com/sveil/os/pkg/compose"
+	rosDocker "github.com/sveil/os/pkg/docker"
+	"github.com/sveil/os/pkg/log"
+	"github.com/sveil/os/pkg/util"
 
 	"github.com/codegangsta/cli"
 	composeClient "github.com/docker/libcompose/docker/client"

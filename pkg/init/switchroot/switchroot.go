@@ -8,10 +8,10 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/rancher/os/config"
-	"github.com/rancher/os/pkg/dfs"
-	"github.com/rancher/os/pkg/init/fsmount"
-	"github.com/rancher/os/pkg/log"
+	"github.com/sveil/os/config"
+	"github.com/sveil/os/pkg/dfs"
+	"github.com/sveil/os/pkg/init/fsmount"
+	"github.com/sveil/os/pkg/log"
 
 	"github.com/docker/docker/pkg/archive"
 )

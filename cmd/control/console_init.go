@@ -12,12 +12,12 @@ import (
 	"syscall"
 	"text/template"
 
-	"github.com/rancher/os/cmd/cloudinitexecute"
-	"github.com/rancher/os/config"
-	"github.com/rancher/os/config/cmdline"
-	"github.com/rancher/os/pkg/compose"
-	"github.com/rancher/os/pkg/log"
-	"github.com/rancher/os/pkg/util"
+	"github.com/sveil/os/cmd/cloudinitexecute"
+	"github.com/sveil/os/config"
+	"github.com/sveil/os/config/cmdline"
+	"github.com/sveil/os/pkg/compose"
+	"github.com/sveil/os/pkg/log"
+	"github.com/sveil/os/pkg/util"
 
 	"github.com/codegangsta/cli"
 	"golang.org/x/crypto/ssh/terminal"

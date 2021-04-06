@@ -10,11 +10,11 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/rancher/os/cmd/control"
-	"github.com/rancher/os/config"
-	"github.com/rancher/os/pkg/compose"
-	"github.com/rancher/os/pkg/docker"
-	"github.com/rancher/os/pkg/log"
+	"github.com/sveil/os/cmd/control"
+	"github.com/sveil/os/config"
+	"github.com/sveil/os/pkg/compose"
+	"github.com/sveil/os/pkg/docker"
+	"github.com/sveil/os/pkg/log"
 
 	"github.com/docker/engine-api/types"
 	"github.com/docker/libcompose/project/options"

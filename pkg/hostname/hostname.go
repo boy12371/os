@@ -7,7 +7,7 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/rancher/os/config"
+	"github.com/sveil/os/config"
 )
 
 func SetHostnameFromCloudConfig(cc *config.CloudConfig) error {

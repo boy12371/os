@@ -7,7 +7,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/rancher/os/pkg/log"
+	"github.com/sveil/os/pkg/log"
 )
 
 const (

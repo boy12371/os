@@ -1,12 +1,12 @@
 package recovery
 
 import (
-	"github.com/rancher/os/config"
-	"github.com/rancher/os/pkg/compose"
-	"github.com/rancher/os/pkg/init/docker"
-	"github.com/rancher/os/pkg/log"
-	"github.com/rancher/os/pkg/netconf"
-	"github.com/rancher/os/pkg/sysinit"
+	"github.com/sveil/os/config"
+	"github.com/sveil/os/pkg/compose"
+	"github.com/sveil/os/pkg/init/docker"
+	"github.com/sveil/os/pkg/log"
+	"github.com/sveil/os/pkg/netconf"
+	"github.com/sveil/os/pkg/sysinit"
 
 	composeConfig "github.com/docker/libcompose/config"
 	"github.com/docker/libcompose/yaml"

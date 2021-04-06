@@ -21,8 +21,8 @@ import (
 	"path"
 	"testing"
 
-	"github.com/rancher/os/config/cloudinit/datasource"
-	"github.com/rancher/os/config/cloudinit/system"
+	"github.com/sveil/os/config/cloudinit/datasource"
+	"github.com/sveil/os/config/cloudinit/system"
 )
 
 func TestEnvironmentApply(t *testing.T) {

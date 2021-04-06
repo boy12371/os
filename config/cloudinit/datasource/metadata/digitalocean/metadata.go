@@ -20,9 +20,9 @@ import (
 	"net"
 	"strconv"
 
-	"github.com/rancher/os/config/cloudinit/datasource"
-	"github.com/rancher/os/config/cloudinit/datasource/metadata"
-	"github.com/rancher/os/pkg/netconf"
+	"github.com/sveil/os/config/cloudinit/datasource"
+	"github.com/sveil/os/config/cloudinit/datasource/metadata"
+	"github.com/sveil/os/pkg/netconf"
 )
 
 const (

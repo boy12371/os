@@ -21,7 +21,7 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/rancher/os/config/cloudinit/config"
+	"github.com/sveil/os/config/cloudinit/config"
 )
 
 type rule func(config Node, report *Report)

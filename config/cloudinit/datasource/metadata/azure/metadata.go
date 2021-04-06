@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/rancher/os/config/cloudinit/config"
-	"github.com/rancher/os/config/cloudinit/datasource"
-	"github.com/rancher/os/config/cloudinit/datasource/metadata"
+	"github.com/sveil/os/config/cloudinit/config"
+	"github.com/sveil/os/config/cloudinit/datasource"
+	"github.com/sveil/os/config/cloudinit/datasource/metadata"
 )
 
 const (

@@ -6,9 +6,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/rancher/os/config"
-	"github.com/rancher/os/pkg/log"
-	"github.com/rancher/os/pkg/util"
+	"github.com/sveil/os/config"
+	"github.com/sveil/os/pkg/log"
+	"github.com/sveil/os/pkg/util"
 )
 
 type MenuEntry struct {

@@ -19,10 +19,10 @@ import (
 	"net"
 	"strings"
 
-	"github.com/rancher/os/config/cloudinit/config"
-	"github.com/rancher/os/config/cloudinit/datasource"
-	"github.com/rancher/os/pkg/log"
-	"github.com/rancher/os/pkg/netconf"
+	"github.com/sveil/os/config/cloudinit/config"
+	"github.com/sveil/os/config/cloudinit/datasource"
+	"github.com/sveil/os/pkg/log"
+	"github.com/sveil/os/pkg/netconf"
 )
 
 type readConfigFunction func(key string) (string, error)

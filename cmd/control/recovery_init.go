@@ -5,7 +5,7 @@ import (
 	"os/exec"
 	"syscall"
 
-	"github.com/rancher/os/pkg/log"
+	"github.com/sveil/os/pkg/log"
 
 	"github.com/codegangsta/cli"
 )

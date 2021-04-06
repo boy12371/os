@@ -4,9 +4,9 @@ import (
 	"os"
 	"strings"
 
-	"github.com/rancher/os/config"
-	"github.com/rancher/os/pkg/dfs"
-	"github.com/rancher/os/pkg/log"
+	"github.com/sveil/os/config"
+	"github.com/sveil/os/pkg/dfs"
+	"github.com/sveil/os/pkg/log"
 )
 
 var (

@@ -5,11 +5,11 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/rancher/os/config"
-	rosDocker "github.com/rancher/os/pkg/docker"
-	"github.com/rancher/os/pkg/log"
-	"github.com/rancher/os/pkg/util"
-	"github.com/rancher/os/pkg/util/network"
+	"github.com/sveil/os/config"
+	rosDocker "github.com/sveil/os/pkg/docker"
+	"github.com/sveil/os/pkg/log"
+	"github.com/sveil/os/pkg/util"
+	"github.com/sveil/os/pkg/util/network"
 
 	yaml "github.com/cloudfoundry-incubator/candiedyaml"
 	dockerClient "github.com/docker/engine-api/client"

@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/rancher/os/config"
-	"github.com/rancher/os/pkg/log"
-	"github.com/rancher/os/pkg/util"
+	"github.com/sveil/os/config"
+	"github.com/sveil/os/pkg/log"
+	"github.com/sveil/os/pkg/util"
 
 	dockerclient "github.com/docker/engine-api/client"
 	composeClient "github.com/docker/libcompose/docker/client"

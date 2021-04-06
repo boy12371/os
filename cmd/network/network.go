@@ -10,11 +10,11 @@ import (
 	"syscall"
 	"text/template"
 
-	"github.com/rancher/os/config"
-	"github.com/rancher/os/pkg/docker"
-	"github.com/rancher/os/pkg/hostname"
-	"github.com/rancher/os/pkg/log"
-	"github.com/rancher/os/pkg/netconf"
+	"github.com/sveil/os/config"
+	"github.com/sveil/os/pkg/docker"
+	"github.com/sveil/os/pkg/hostname"
+	"github.com/sveil/os/pkg/log"
+	"github.com/sveil/os/pkg/netconf"
 
 	"github.com/docker/libnetwork/resolvconf"
 	"golang.org/x/net/context"

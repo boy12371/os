@@ -3,7 +3,7 @@ package control
 import (
 	"fmt"
 
-	"github.com/rancher/os/pkg/util"
+	"github.com/sveil/os/pkg/util"
 
 	"github.com/codegangsta/cli"
 )
