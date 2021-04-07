@@ -24,4 +24,4 @@ for file in $(ls dist/artifacts/); do
     esac
 done
 
-echo "github-release upload --user boy12371 --repo os-419184 --tag ${VERSION} --file dist/artifacts/rancheros.iso --name rancheros-hyperv.iso" >> dist/publish.sh
+echo "github-release upload --user boy12371 --repo os --tag ${VERSION} --file dist/artifacts/rancheros.iso --name rancheros-hyperv.iso" >> dist/publish.sh
