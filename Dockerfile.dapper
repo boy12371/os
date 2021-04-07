@@ -148,7 +148,7 @@ RUN curl -pfL ${SELINUX_POLICY_URL} > ${DOWNLOADS}/$(basename ${SELINUX_POLICY_U
 
 # Install Go
 RUN wget -O - https://storage.googleapis.com/golang/go${GO_VERSION}.linux-${GOARCH}.tar.gz | tar -xzf - -C /usr/local && \
-    go get github.com/rancher/trash
+    go get github.com/boy12371/trash
 
 RUN mkdir -p ${GOPATH}/src/golang.org/x && cd ${GOPATH}/src/golang.org/x/ && git clone https://github.com/golang/tools && \
     cd tools && git checkout 6adeb8aab2ded9eb693b831d5fd090c10a6ebdfa -b temp && go get golang.org/x/lint/golint

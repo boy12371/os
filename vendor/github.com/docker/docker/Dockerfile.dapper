@@ -34,7 +34,7 @@ RUN groupadd -r docker
 RUN useradd --create-home --gid docker unprivilegeduser
 
 # Trash
-RUN go get github.com/rancher/trash
+RUN go get github.com/boy12371/trash
 
 ENV DOCKER_BUILDTAGS apparmor seccomp selinux cgo daemon netgo
 ENV DAPPER_SOURCE /go/src/github.com/docker/docker
