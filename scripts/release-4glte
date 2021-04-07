@@ -17,11 +17,11 @@ for file in $(ls dist/artifacts/); do
             echo "gsutil cp dist/artifacts/${file} gs://releases.rancher.com/os/latest/4glte/initrd" >> ./dist/publish_gss_latest.sh
             echo "gsutil cp dist/artifacts/${file} gs://releases.rancher.com/os/${VERSION}/4glte/initrd" >> ./dist/publish_gss_${VERSION}.sh
             ;;
-        "rancheros.iso" | "rootfs.tar.gz")
+        "sveilos.iso" | "rootfs.tar.gz")
             echo "gsutil cp dist/artifacts/${file} gs://releases.rancher.com/os/latest/4glte/${file}" >> ./dist/publish_gss_latest.sh
             echo "gsutil cp dist/artifacts/${file} gs://releases.rancher.com/os/${VERSION}/4glte/${file}" >> ./dist/publish_gss_${VERSION}.sh
             ;;
     esac
 done
 
-echo "github-release upload --user boy12371 --repo os --tag ${VERSION} --file dist/artifacts/rancheros.iso --name rancheros-4glte.iso" >> dist/publish.sh
+echo "github-release upload --user boy12371 --repo os --tag ${VERSION} --file dist/artifacts/sveilos.iso --name sveilos-4glte.iso" >> dist/publish.sh

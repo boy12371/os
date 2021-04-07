@@ -10,24 +10,24 @@ rm -f $CHECKSUM
 
 FILELIST="
 initrd
-rancheros.ipxe
-rancheros.iso
+sveilos.ipxe
+sveilos.iso
 rootfs.tar.gz
 vmlinuz
-rancheros-aliyun.vhd
-rancheros-cloudstack.img
-rancheros-digitalocean.img
-rancheros-openstack.img
-rancheros-pingan.img
-rancheros-gce.tar.gz
-rancheros-raspberry-pi64.zip
-rancheros-4glte.iso
-rancheros-hyperv.iso
-rancheros-proxmoxve.iso
-rancheros-proxmoxve-autoformat.iso
-rancheros-vmware.iso
-rancheros-vmware-autoformat.iso
-rancheros-vmware.vmdk
+sveilos-aliyun.vhd
+sveilos-cloudstack.img
+sveilos-digitalocean.img
+sveilos-openstack.img
+sveilos-pingan.img
+sveilos-gce.tar.gz
+sveilos-raspberry-pi64.zip
+sveilos-4glte.iso
+sveilos-hyperv.iso
+sveilos-proxmoxve.iso
+sveilos-proxmoxve-autoformat.iso
+sveilos-vmware.iso
+sveilos-vmware-autoformat.iso
+sveilos-vmware.vmdk
 "
 
 rm -rf dist/checksums && mkdir -p dist/checksums

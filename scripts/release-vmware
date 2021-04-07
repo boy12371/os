@@ -12,12 +12,12 @@ touch dist/publish.sh dist/publish_gss_${VERSION}.sh dist/publish_gss_latest.sh
 chmod 755 dist/publish.sh dist/publish_gss_${VERSION}.sh dist/publish_gss_latest.sh
 
 if [ "$OS_AUTOFORMAT" = "true" ]; then
-    echo "gsutil cp dist/artifacts/rancheros.iso gs://releases.rancher.com/os/latest/vmware/rancheros-autoformat.iso" >> ./dist/publish_gss_latest.sh
-    echo "gsutil cp dist/artifacts/rancheros.iso gs://releases.rancher.com/os/${VERSION}/vmware/rancheros-autoformat.iso" >> ./dist/publish_gss_${VERSION}.sh
-    # In order to be compatible with early links, like /latest/rancheros-vmware.iso, I have to do this.
-    echo "gsutil cp dist/artifacts/rancheros.iso gs://releases.rancher.com/os/latest/rancheros-vmware.iso" >> ./dist/publish_gss_latest.sh
-    echo "gsutil cp dist/artifacts/rancheros.iso gs://releases.rancher.com/os/${VERSION}/rancheros-vmware.iso" >> ./dist/publish_gss_${VERSION}.sh
-    echo "github-release upload --user boy12371 --repo os --tag ${VERSION} --file dist/artifacts/rancheros.iso --name rancheros-vmware-autoformat.iso" >> dist/publish.sh
+    echo "gsutil cp dist/artifacts/sveilos.iso gs://releases.rancher.com/os/latest/vmware/sveilos-autoformat.iso" >> ./dist/publish_gss_latest.sh
+    echo "gsutil cp dist/artifacts/sveilos.iso gs://releases.rancher.com/os/${VERSION}/vmware/sveilos-autoformat.iso" >> ./dist/publish_gss_${VERSION}.sh
+    # In order to be compatible with early links, like /latest/sveilos-vmware.iso, I have to do this.
+    echo "gsutil cp dist/artifacts/sveilos.iso gs://releases.rancher.com/os/latest/sveilos-vmware.iso" >> ./dist/publish_gss_latest.sh
+    echo "gsutil cp dist/artifacts/sveilos.iso gs://releases.rancher.com/os/${VERSION}/sveilos-vmware.iso" >> ./dist/publish_gss_${VERSION}.sh
+    echo "github-release upload --user boy12371 --repo os --tag ${VERSION} --file dist/artifacts/sveilos.iso --name sveilos-vmware-autoformat.iso" >> dist/publish.sh
     exit 0
 fi
 
@@ -47,7 +47,7 @@ rm -f /tmp/dist/success
 qemu-img create -f qcow2 ./dist/vmware/vmdk.img 8G
 kvm -curses \
     -drive if=virtio,file=./dist/vmware/vmdk.img \
-    -cdrom ./dist/artifacts/rancheros.iso \
+    -cdrom ./dist/artifacts/sveilos.iso \
     -m 2048 \
     -fsdev local,id=conf,security_model=none,path=/tmp/dist \
     -device virtio-9p-pci,fsdev=conf,mount_tag=config-2 \
@@ -55,8 +55,8 @@ kvm -curses \
 
 [ -f /tmp/dist/success ]
 
-echo "Converting ./dist/rancheros.vmdk"
-qemu-img convert -f qcow2 -O vmdk ./dist/vmware/vmdk.img ./dist/artifacts/rancheros.vmdk
+echo "Converting ./dist/sveilos.vmdk"
+qemu-img convert -f qcow2 -O vmdk ./dist/vmware/vmdk.img ./dist/artifacts/sveilos.vmdk
 
 for file in $(ls dist/artifacts/); do
     case $file in
@@ -64,12 +64,12 @@ for file in $(ls dist/artifacts/); do
             echo "gsutil cp dist/artifacts/${file} gs://releases.rancher.com/os/latest/vmware/initrd" >> ./dist/publish_gss_latest.sh
             echo "gsutil cp dist/artifacts/${file} gs://releases.rancher.com/os/${VERSION}/vmware/initrd" >> ./dist/publish_gss_${VERSION}.sh
             ;;
-        "rancheros.iso" | "rancheros.vmdk" | "rootfs.tar.gz")
+        "sveilos.iso" | "sveilos.vmdk" | "rootfs.tar.gz")
             echo "gsutil cp dist/artifacts/${file} gs://releases.rancher.com/os/latest/vmware/${file}" >> ./dist/publish_gss_latest.sh
             echo "gsutil cp dist/artifacts/${file} gs://releases.rancher.com/os/${VERSION}/vmware/${file}" >> ./dist/publish_gss_${VERSION}.sh
             ;;
     esac
 done
 
-echo "github-release upload --user boy12371 --repo os --tag ${VERSION} --file dist/artifacts/rancheros.iso --name rancheros-vmware.iso" >> dist/publish.sh
-echo "github-release upload --user boy12371 --repo os --tag ${VERSION} --file dist/artifacts/rancheros.vmdk --name rancheros-vmware.vmdk" >> dist/publish.sh
+echo "github-release upload --user boy12371 --repo os --tag ${VERSION} --file dist/artifacts/sveilos.iso --name sveilos-vmware.iso" >> dist/publish.sh
+echo "github-release upload --user boy12371 --repo os --tag ${VERSION} --file dist/artifacts/sveilos.vmdk --name sveilos-vmware.vmdk" >> dist/publish.sh
