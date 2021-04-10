@@ -62,12 +62,12 @@ ARG SELINUX_POLICY_URL=https://github.com/boy12371/refpolicy/releases/download/v
 
 ARG KERNEL_VERSION=4.14.228-sveil
 ARG KERNEL_URL_amd64=https://github.com/boy12371/os-kernel/releases/download/v${KERNEL_VERSION}/linux-${KERNEL_VERSION}-x86.tar.gz
-ARG KERNEL_URL_arm64=https://github.com/rancher/os-kernel/releases/download/v${KERNEL_VERSION}/linux-${KERNEL_VERSION}-arm64.tar.gz
+ARG KERNEL_URL_arm64=https://github.com/boy12371/os-kernel/releases/download/v${KERNEL_VERSION}/linux-${KERNEL_VERSION}-arm64.tar.gz
 
 ARG BUILD_DOCKER_URL_amd64=https://get.docker.com/builds/Linux/x86_64/docker-1.10.3
 ARG BUILD_DOCKER_URL_arm64=https://github.com/rancher/docker/releases/download/v1.10.3-ros1/docker-1.10.3_arm64
 
-ARG OS_RELEASES_YML=https://releases.rancher.com/os
+ARG OS_RELEASES_YML=https://github.com/boy12371/os/releases
 
 ARG OS_SERVICES_REPO=https://raw.githubusercontent.com/${OS_REPO}/os-services
 ARG IMAGE_NAME=${OS_REPO}/os

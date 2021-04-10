@@ -6,7 +6,7 @@ cd $(dirname $0)/..
 source ./scripts/version
 ./scripts/release-build
 
-cat scripts/hosting/rancheros.ipxe | sed "s/latest/${VERSION}/g" > dist/artifacts/rancheros.ipxe
+cat scripts/hosting/rancheros.ipxe | sed "s/latest/${VERSION}/g" > dist/artifacts/sveilos.ipxe
 
 echo "github-release release --user boy12371 --repo os --tag ${VERSION} --pre-release" > dist/publish.sh
 chmod 755 dist/publish.sh
