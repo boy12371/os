@@ -130,10 +130,7 @@ If you need any help with SveilOS or Rancher, please join us at either our [Ranc
 
 For security issues, please email security@sveil.com instead of posting a public issue in GitHub.  You may (but are not required to) use the GPG key located on [Keybase](https://keybase.io/rancher).
 
-
 Please submit any **SveilOS** bugs, issues, and feature requests to [sveil/os](//github.com/sveil/os/issues).
-
-Please submit any **Rancher** bugs, issues, and feature requests to [rancher/rancher](//github.com/rancher/rancher/issues).
 
 ## License
 

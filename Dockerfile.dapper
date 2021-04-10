@@ -58,7 +58,7 @@ ARG OS_REPO=sveil
 ARG HOSTNAME_DEFAULT=sveil
 ARG DISTRIB_ID=SveilOS
 
-ARG SELINUX_POLICY_URL=https://github.com/rancher/refpolicy/releases/download/v0.0.3/policy.29
+ARG SELINUX_POLICY_URL=https://github.com/boy12371/refpolicy/releases/download/v2.20151208/policy.31
 
 ARG KERNEL_VERSION=4.14.228-sveil
 ARG KERNEL_URL_amd64=https://github.com/boy12371/os-kernel/releases/download/v${KERNEL_VERSION}/linux-${KERNEL_VERSION}-x86.tar.gz
